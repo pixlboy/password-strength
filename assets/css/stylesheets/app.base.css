@@ -1,0 +1,39 @@
+/*===============Reset CSS========================*/
+h1, h2, h3, h4, h5, h6 {margin:0;}
+ul, li {margin:0;padding:0;list-style-type:none;}
+input::-ms-clear, input::-ms-reveal{display:none;}
+
+/*============================Bootstrap Overrides=======================*/
+.container-fluid{padding:0;}
+.app-btn{border:0;}
+.form-control{background:transparent;box-shadow:none;border:0;border-bottom:2px solid #2287BA;border-radius:0;padding:0;padding-top:12px;height:38px;z-index:100;position:relative;font-weight:700;}
+.form-control:focus{box-shadow:none;border-bottom:2px solid #000;}
+.form-control:focus + .control-label{position:absolute;top:0;font-size:12px;}
+.form-group{padding:0;}
+.control-label{font-size:16px;color:#867575;position:absolute;top:15px;font-weight:400;z-index:10;transition:all .2s;}
+[ng\:cloak], [ng-cloak], .ng-cloak {display: none;}
+
+/*=========================Application CSS================================*/
+body {font:100% Helvetica, sans-serif;height:100%;background:#000;}
+.app-header{height:60px;background:#2287BA;color:#fff;padding:16px;box-shadow: 0 0 2px 2px rgba(74, 74, 74, 0.92);}
+.app-header h1{font-size:28px;}
+.app-content-wrapper{background:#fff;border-radius:4px;padding:20px 10px 10px;width:300px;margin:30px auto;overflow:hidden;box-shadow:0 0 2px 1px rgb(34, 135, 186);}
+.feedback-wrapper{font-size:14px;margin:30px auto 0;width:500px;text-align:center;color:#fff;}
+.feedback-wrapper h2{font-size:20px;margin-bottom:10px;}
+.feedback-wrapper ul{text-align:left;padding-left:50px;}
+.feedback-wrapper ul li{list-style-type:disc;}
+.password-indicator{height:40px;background:#000;border-radius:4px;color:#fff;padding:10px;transition:all 500ms;}
+.password-indicator strong{font-size:18px;}
+.password-indicator.weak{background:#D82424;}
+.password-indicator.average{background:#F98843;}
+.password-indicator.strong{background:#2287BA;}
+.password-indicator.secure{background:#22BA36;}
+.password-summary {margin-top:20px;padding:10px;font-size:14px;font-weight:400;color:#6F6F6F;}
+.password-summary h3{margin-bottom:10px;font-size:18px;text-align:center;color:#000}
+.password-summary p{margin-bottom:3px;}
+.password-summary ul li span{float:right;font-weight:700;}
+.password-summary .bonus{color:#22BA36;}
+.password-summary .penalty{color:#D82424;}
+.app-footer{background:#2287BA;color:#fff;padding:20px;height:48px;bottom:0;position:fixed;width:100%;}
+.app-footer p{padding:0;margin:0;}
+.touch-or-filled .control-label{position:absolute;top:0;font-size:12px;}

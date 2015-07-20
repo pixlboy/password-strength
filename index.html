@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="P-strength">
+<head>
+    <title>Password Strength</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport"       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="description"    content="Simple password strength checker">
+    <meta name="keywords"       content="password, strength, validation, checker">
+    <meta name="author"         content="Rachit Garg">
+   	<link rel="stylesheet" type="text/css" href="assets/libs/bootstrap-3.3.4/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/stylesheets/app.base.css" />
+</head>
+<body>
+	<article class="app-wrapper container-fluid" data-ng-controller="PasswordStrengthCtrl">
+	    <header class="app-header text-center">
+			<h1>Simple password strength checker</h1>
+		</header>
+		<section class="app-content-wrapper" ng-cloak>
+			<div class="password-check-wrapper col-xs-12">
+				<form name="passwordForm" class="floating-form">
+					<div class="form-group col-xs-12"
+						 data-ng-class="{'touch-or-filled' : password.length}">
+				        <input class="form-control" ng-model="password" type="text" data-ng-keyup="getPasswordStrength($event)" data-ng-keydown="preventKeyAction($event)"/>
+				        <label class="control-label">Type Password Here</label>
+				    </div>
+				    <div class="password-indicator col-xs-12 text-center" 
+				    	ng-class="{'weak' : (totalScore >= 75 && totalScore < 100), 
+				    			'average' : (totalScore >= 100 && totalScore < 125),
+				    			'strong' : (totalScore >= 125 && totalScore < 150),
+				    			'secure' : (totalScore >= 150)}">
+		    			<strong ng-show="(totalScore < 75)">Indicator</strong>
+				    	<strong ng-show="(totalScore >= 75 && totalScore < 100)">Weak!</strong>
+				    	<strong ng-show="(totalScore >= 100 && totalScore < 125)">Average!</strong>
+				    	<strong ng-show="(totalScore >= 125 && totalScore < 150)">Strong!</strong>
+				    	<strong ng-show="(totalScore >= 150)">Secure!</strong>
+				    </div>
+				</form>
+			</div>
+			<div class="password-summary col-xs-12">
+				<h3>Breakdown of Points</h3>
+				<ul>
+					<li>
+						<label>Base Score : </label>
+						<span data-ng-class="{'bonus' : baseScore > 0}">{{baseScore}}</span>
+					</li>
+					<li>
+						<label>Length Bonus : </label>
+						<span data-ng-class="{'bonus' : lengthBonus > 0}">{{lengthBonus}} [{{stringLength}} x 3]</span>
+					</li>
+					<li>
+						<label>Upper case Bonus : </label>
+						<span data-ng-class="{'bonus' : upperCaseBonus > 0}">{{upperCaseBonus}} [{{stringSummary.upperCaseL}} x 4]</span>
+					</li>
+					<li>
+						<label>Number Bonus : </label>
+						<span data-ng-class="{'bonus' : numberBonus > 0}">{{numberBonus}} [{{stringSummary.numberL}} x 5]</span>
+					</li>
+					<li>
+						<label>Symbol Bonus : </label>
+						<span data-ng-class="{'bonus' : symbolBonus > 0}">{{symbolBonus}} [{{stringSummary.symbolL}} x 5]</span>
+					</li>
+					<li>
+						<label>Combination Bonus : </label>
+						<span data-ng-class="{'bonus' : comboBonus > 0}">{{comboBonus}}</span>
+					</li>
+					<li>
+						<label>Lower case only penalty : </label>
+						<span data-ng-class="{'penalty' : lowerCaseOnlyPenalty < 0}">{{lowerCaseOnlyPenalty}} [{{stringSummary.lowerCaseL}} x -2]</span>
+					</li>
+					<li>
+						<label>Numbers only penalty : </label>
+						<span data-ng-class="{'penalty' : numbersOnlyPenalty < 0}">{{numbersOnlyPenalty}} [{{stringSummary.numberL}} x -2]</span>
+					</li>
+					<li>
+						<label>Total Score : </label>
+						<span data-ng-class="{'bonus' : totalScore > 0}">{{totalScore}}</span>
+					</li>
+				</ul>	
+			</div>
+		</section>
+		<div class="feedback-wrapper">
+			<h2>Password feedback</h2>
+			<ul>
+				<li data-ng-show="(lowerCaseOnlyPenalty < 0)">Passwords with lower case characters only are easily BREACHED.</li>
+				<li data-ng-show="(stringSummary.numberL == 0)">You may add numbers to your password to add more STRENGTH.</li>
+				<li data-ng-show="(stringSummary.upperCaseL == 0)">Upper case characters can reduce the password VULNERABILITY.</li>
+				<li data-ng-show="(stringSummary.symbolL == 0)">Special characters can add to extra SECURITY to your password.</li>
+				<li data-ng-show="(totalScore > 50 && totalScore < 100)">You can think of a better password !</li>
+				<li data-ng-show="(totalScore >= 100 && totalScore < 125)">Good Going !</li>
+				<li data-ng-show="(totalScore >= 125 && totalScore < 150)">Almost Secure !!</li>
+				<li data-ng-show="(totalScore >= 150)">Secured !!!</li>	
+			</ul>
+		</div>
+		<div class="clearfix"></div>	
+		<footer class="app-footer text-right">
+			<p>© 2015  All Rights Reserved</p>
+		</footer>
+	</article>
+	<script src="assets/libs/jquery/jquery-2.1.4.js"></script>
+	<script src="assets/libs/bootstrap-3.3.4/js/bootstrap.js"></script>
+    <script src="assets/libs/angular/angular.js"></script>
+    <script src="app/app.module.js"></script>
+</body>
+</html>
