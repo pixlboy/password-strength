@@ -1,4 +1,4 @@
-# P-strength
+# Password Strength Check
 Password Strength Check
 
 ## Instructions to run :
